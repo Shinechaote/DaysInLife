@@ -1,0 +1,10 @@
+body{
+	text-align: center;
+}
+.title{
+	font-size: 100px;
+	text-align: center;
+}
+.form-input{
+	display: inline-block;
+}

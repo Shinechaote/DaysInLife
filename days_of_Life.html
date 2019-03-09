@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="slicknav.css">
+<link rel="stylesheet" href="days_of_life.css">
+<script src="./p5.min.js">
+
+</script>
+
+<title>Days in Life</title>
+</head>
+
+<body>
+  <h1 class="title">Days in Life</h1>
+<div>
+  <form class="registration" id="registration" class="form-input">
+    <div class="row"> <span>Date of Birth</span>
+      <input id="datePicker" type="date" oninput="calculateDays()" value=""/>
+		</div>
+    <div class="row"> <span>Format</span>
+      <select id="format" >
+        <option>Milliseconds</option>
+        <option>Seconds</option>
+        <option>Minutes</option>
+        <option>Hours</option>
+        <option selected="selected">Days</option>
+        <option>Weeks</option>
+      </select>
+    </div>
+
+  </form>
+  <h3 id="daysOutput">You have lived 0 days already</h3>
+  <script src="days_of_life.js"></script>
+</div>
+</body>
+</html>
