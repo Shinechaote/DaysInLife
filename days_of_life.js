@@ -1,4 +1,5 @@
 var timeHTML;
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 Object.prototype.equals = function(b) {
     var a = this;
     for(i in a) {
@@ -30,8 +31,17 @@ Object.prototype.equals = function(b) {
     return true;
 }
 function setup(){
-	document.getElementById('datePicker').valueAsDate = new Date();
-	frameRate(60);
+  if(isSafari){
+    var date = new Date().getDate().toString();
+    var month = new Date().getMonth().toString();
+    var year = (new Date().getYear() + 1900).toString();
+    document.getElementById('datePicker').type = "text";
+    document.getElementById('datePicker').value = date + "." + month + "." + year;
+  }
+  else{
+    document.getElementById('datePicker').valueAsDate = new Date();
+  }
+	frameRate(2);
 	timeHTML = daysOutput.innerHTML;
 }
 function draw(){
@@ -58,7 +68,8 @@ function draw(){
 				break;
 
 		}
-		var date_of_birth = document.getElementById('datePicker').valueAsDate.getTime();
+		var date_of_birth_arr = document.getElementById('datePicker').value.split(".");
+    var date_of_birth = new Date(date_of_birth_arr[2],date_of_birth_arr[1],date_of_birth_arr[0]);
 		var current_date = new Date().getTime();
 		var date_difference = current_date - date_of_birth;
 
