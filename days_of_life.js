@@ -41,7 +41,7 @@ function setup(){
   else{
     document.getElementById('datePicker').valueAsDate = new Date();
   }
-	frameRate(2);
+	frameRate(60);
 	timeHTML = daysOutput.innerHTML;
 }
 function draw(){
