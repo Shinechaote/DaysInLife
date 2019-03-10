@@ -14,9 +14,6 @@ body{
 	display: inline-block;
 	position: relative;
 }
-.select-wrapper:hover{
-		color: #f39c12;
-}
 .select-wrapper::before {
   font-family: fontawesome;
   content: "\f0dd";
@@ -24,8 +21,11 @@ body{
   position: absolute;
   right: 15px;
   top: 10px;
-  color: #fff;
+  color: #000;
 	pointer-events: none;
+}
+.select-wrapper:hover::before{
+	color:#f39c12;
 }
 select {
   -moz-appearance: none;

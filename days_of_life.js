@@ -62,7 +62,28 @@ function draw(){
 		var current_date = new Date().getTime();
 		var date_difference = current_date - date_of_birth;
 
-		date_difference = Math.floor(date_difference / divisor);
+
+    switch(unit){
+      case "Milliseconds":
+        date_difference += 1000*60*60;
+        break;
+      case "Seconds":
+        date_difference += 1000*60;
+        break;
+      case "Minutes":
+        date_difference += 60;
+        break;
+      case "Hours":
+        date_difference += 1;
+        break;
+      case "Days":
+        date_difference += 1.0/24.0;
+        break;
+      case "Weeks":
+        date_difference += 1.0/(24.0*7.0);
+        break;
+    }
+    date_difference = Math.floor(date_difference / divisor);
 		if(!timeHTML.equals("You have lived " + date_difference.toString() + " " + unit +" already")){
 			daysOutput.innerHTML = "You have lived " + date_difference.toString() + " " + unit +" already";
 		}
