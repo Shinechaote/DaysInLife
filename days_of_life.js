@@ -68,32 +68,17 @@ function draw(){
 				break;
 
 		}
-		var date_of_birth_arr = document.getElementById('datePicker').value.split(".");
-    var date_of_birth = new Date(date_of_birth_arr[2],date_of_birth_arr[1],date_of_birth_arr[0]);
+    var date_of_birth = 0;
+    if(isSafari){
+      var date_of_birth_arr = document.getElementById('datePicker').value.split(".");
+      date_of_birth = new Date(date_of_birth_arr[2],date_of_birth_arr[1],date_of_birth_arr[0]).getTime();
+    }
+    else{
+      date_of_birth = document.getElementById('datePicker').valueAsDate.getTime();
+    }
 		var current_date = new Date().getTime();
 		var date_difference = current_date - date_of_birth;
 
-
-    switch(unit){
-      case "Milliseconds":
-        date_difference += 1000*60*60;
-        break;
-      case "Seconds":
-        date_difference += 1000*60;
-        break;
-      case "Minutes":
-        date_difference += 60;
-        break;
-      case "Hours":
-        date_difference += 1;
-        break;
-      case "Days":
-        date_difference += 1.0/24.0;
-        break;
-      case "Weeks":
-        date_difference += 1.0/(24.0*7.0);
-        break;
-    }
     date_difference = Math.floor(date_difference / divisor);
 		if(!timeHTML.equals("You have lived " + date_difference.toString() + " " + unit +" already")){
 			daysOutput.innerHTML = "You have lived " + date_difference.toString() + " " + unit +" already";
