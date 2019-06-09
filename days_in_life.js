@@ -1,5 +1,9 @@
 var timeHTML;
+<<<<<<< HEAD:days_of_life.js
 var time;
+=======
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+>>>>>>> e80f80abd99254d93ece8d854bf60497bce39efe:days_in_life.js
 Object.prototype.equals = function(b) {
     var a = this;
     for(i in a) {
@@ -31,7 +35,16 @@ Object.prototype.equals = function(b) {
     return true;
 }
 function setup(){
-	document.getElementById('datePicker').valueAsDate = new Date();
+  if(isSafari){
+    var date = new Date().getDate().toString();
+    var month = new Date().getMonth().toString();
+    var year = (new Date().getYear() + 1900).toString();
+    document.getElementById('datePicker').type = "text";
+    document.getElementById('datePicker').value = date + "." + month + "." + year;
+  }
+  else{
+    document.getElementById('datePicker').valueAsDate = new Date();
+  }
 	frameRate(60);
 	timeHTML = daysOutput.innerHTML;
 }
@@ -59,6 +72,7 @@ function draw(){
 				break;
 
 		}
+<<<<<<< HEAD:days_of_life.js
 		try{
 			var date_of_birth = document.getElementById('datePicker').valueAsDate.getTime();
 			var current_date = new Date().getTime();
@@ -69,28 +83,19 @@ function draw(){
 			console.log("Error")
 		}
 
-
-
-    switch(unit){
-      case "Milliseconds":
-        date_difference += 1000*60*60;
-        break;
-      case "Seconds":
-        date_difference += 1000*60;
-        break;
-      case "Minutes":
-        date_difference += 60;
-        break;
-      case "Hours":
-        date_difference += 1;
-        break;
-      case "Days":
-        date_difference += 1.0/24.0;
-        break;
-      case "Weeks":
-        date_difference += 1.0/(24.0*7.0);
-        break;
+=======
+    var date_of_birth = 0;
+    if(isSafari){
+      var date_of_birth_arr = document.getElementById('datePicker').value.split(".");
+      date_of_birth = new Date(date_of_birth_arr[2],date_of_birth_arr[1],date_of_birth_arr[0]).getTime();
     }
+    else{
+      date_of_birth = document.getElementById('datePicker').valueAsDate.getTime();
+    }
+		var current_date = new Date().getTime();
+		var date_difference = current_date - date_of_birth;
+>>>>>>> e80f80abd99254d93ece8d854bf60497bce39efe:days_in_life.js
+
     date_difference = Math.floor(date_difference / divisor);
 		if(!timeHTML.equals("You have lived " + date_difference.toString() + " " + unit +" already")){
 			daysOutput.innerHTML = "You have lived " + date_difference.toString() + " " + unit +" already";
