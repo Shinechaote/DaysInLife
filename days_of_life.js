@@ -1,4 +1,5 @@
 var timeHTML;
+var time;
 Object.prototype.equals = function(b) {
     var a = this;
     for(i in a) {
@@ -58,9 +59,16 @@ function draw(){
 				break;
 
 		}
-		var date_of_birth = document.getElementById('datePicker').valueAsDate.getTime();
-		var current_date = new Date().getTime();
-		var date_difference = current_date - date_of_birth;
+		try{
+			var date_of_birth = document.getElementById('datePicker').valueAsDate.getTime();
+			var current_date = new Date().getTime();
+			var date_difference = current_date - date_of_birth;
+			time = date_difference;
+		}
+		catch{
+			console.log("Error")
+		}
+
 
 
     switch(unit){
